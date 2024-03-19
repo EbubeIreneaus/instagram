@@ -14,13 +14,26 @@ function CreatePost() {
   const [nav, setNav] = useState<"file" | "text">("file");
   const [Caption, setCaption] = useState<string>("");
   const url = useContext(ApiContext)
+  const profileId = localStorage.getItem('instagramId')
 
   const uploadPost = () => {
     const formdata = new FormData()
     formdata.append('file', file?.fileData as File)
     formdata.append('type', file?.type as string)
     formdata.append('caption', Caption)
-    axios.post(`${url}/`)
+
+    axios.post(`${url}/post/`, formdata, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'profileId': profileId
+      }
+    })
+    .then(res =>{
+      alert(res.data)
+    })
+    .catch(err =>{
+      console.error(err)
+    })
   };
 
   const capturePost = (e: React.ChangeEvent<HTMLInputElement>) => {
