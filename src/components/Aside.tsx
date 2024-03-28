@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "./Modal";
-import CreatePost from "./CreatePost";
+
 
 type linkType = {
   title: string;
@@ -54,7 +54,6 @@ function Aside() {
       </ul>
     </aside>
 
-      <CreatePost />
     </>
   );
 }
